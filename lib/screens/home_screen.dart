@@ -62,7 +62,8 @@ class _HomeScreenState extends State<HomeScreen> {
           (e) => e.name == item.value["category"],
           orElse: () => Category.books,
         );
-        loadedItems.add(Product(
+        loadedItems.add(
+          Product(
             soldTimes: item.value['soldTimes'],
             name: item.value['name'],
             id: item.key,
@@ -71,7 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
             imageLink: item.value['imageLink'],
             numInStock: item.value['numInStock'],
             category: category,
-            rate: item.value['rate']));
+            rate: double.tryParse(item.value['rate'].toString()) ?? 0.0,
+          ),
+        );
         setState(() {
           allProducts = loadedItems;
           showenProducts = allProducts;
